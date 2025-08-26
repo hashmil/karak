@@ -1,0 +1,24 @@
+{
+  "name": "How Many Karaks Is That?",
+  "short_name": "Karak Calculator",
+  "description": "Convert any AED amount into cups of delicious karak chai!",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#8B4513",
+  "background_color": "#FFF8DC",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}

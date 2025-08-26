@@ -15,6 +15,17 @@ export const metadata: Metadata = {
   authors: [{ name: "Karak Calculator" }],
   creator: "Karak Calculator",
   publisher: "Karak Calculator",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" }
+    ],
+  },
   openGraph: {
     title: "How Many Karaks Is That?",
     description: "Convert any AED amount into cups of delicious karak chai!",
