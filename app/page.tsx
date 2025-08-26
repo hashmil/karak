@@ -1,103 +1,156 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { DirhamSymbol } from "@/components/ui/dirham-symbol"
+import { Info } from "lucide-react"
+
+export default function KarakCalculator() {
+  const [aedAmount, setAedAmount] = useState("")
+  const [karakCount, setKarakCount] = useState<number | null>(null)
+  const [isCalculating, setIsCalculating] = useState(false)
+
+  // Average price of karak chai in UAE (approximately 1-2 AED)
+  const KARAK_PRICE = 1.5
+
+  const calculateKarak = async () => {
+    const amount = Number.parseFloat(aedAmount)
+    if (isNaN(amount) || amount <= 0) return
+
+    setIsCalculating(true)
+
+    // Add a small delay for better UX
+    await new Promise((resolve) => setTimeout(resolve, 500))
+
+    const cups = Math.floor(amount / KARAK_PRICE)
+    setKarakCount(cups)
+    setIsCalculating(false)
+  }
+
+  const getHumorousMessage = (cups: number) => {
+    if (cups === 0) return "Not even a sip! 😅"
+    if (cups === 1) return "Just one cup - savor it! ☕"
+    if (cups <= 5) return "Perfect for a small gathering! 🫖"
+    if (cups <= 20) return "Enough for the whole family! 👨‍👩‍👧‍👦"
+    if (cups <= 50) return "Time for a neighborhood chai party! 🎉"
+    if (cups <= 100) return "You could open a small chai stall! 🏪"
+    return "Congratulations, you're now a chai mogul! 👑"
+  }
+
+  const reset = () => {
+    setAedAmount("")
+    setKarakCount(null)
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-background via-card to-muted p-4">
+      <div className="w-full max-w-md mx-auto space-y-6">
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <div className="text-6xl mb-4">☕</div>
+          <h1 className="text-3xl font-extrabold text-foreground tracking-tight">How Many Karaks Is That?</h1>
+          <p className="text-muted-foreground font-medium">Convert any price into the only metric that truly matters</p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground font-medium">
+                <Info className="h-4 w-4 mr-1" />
+                Fun Facts
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-accent font-semibold">Did you know?</DialogTitle>
+                <div className="text-sm text-muted-foreground space-y-2">
+                  <div>
+                    The average person in the UAE drinks about 3-4 cups of karak per day. That&apos;s roughly{" "}
+                    <DirhamSymbol size={16} className="inline align-baseline" />
+                    {(KARAK_PRICE * 3.5 * 365).toFixed(0)} worth of karak annually!
+                  </div>
+                  <div>
+                    Karak chai originated from the Indian subcontinent and has become an integral part of UAE culture,
+                    bringing people together across all walks of life.
+                  </div>
+                </div>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Calculator Card */}
+        <Card className="border-2 border-primary/20 shadow-lg">
+          <CardHeader className="text-center">
+            <CardTitle className="text-primary font-semibold">The Karak Calculator</CardTitle>
+            <CardDescription className="font-medium">Enter an amount in AED and discover its true value</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <label htmlFor="aed-input" className="text-sm font-semibold text-foreground">
+                Amount in AED
+              </label>
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground flex items-center">
+                  <DirhamSymbol size={20} />
+                </div>
+                <Input
+                  id="aed-input"
+                  type="number"
+                  placeholder="0.00"
+                  value={aedAmount}
+                  onChange={(e) => setAedAmount(e.target.value)}
+                  className="pl-16 text-lg"
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-2">
+              <Button onClick={calculateKarak} disabled={!aedAmount || isCalculating} className="flex-1 font-semibold">
+                {isCalculating ? "Brewing..." : "Calculate Karaks"}
+              </Button>
+              <Button onClick={reset} variant="outline" disabled={!aedAmount && karakCount === null} className="font-semibold">
+                Reset
+              </Button>
+            </div>
+
+            {/* Results */}
+            {karakCount !== null && (
+              <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20 text-center space-y-3">
+                <div className="text-4xl font-black text-primary tracking-tight">{karakCount.toLocaleString()}</div>
+                <div className="text-lg font-medium text-foreground">cups of delicious karak chai</div>
+                <Badge variant="secondary" className="text-sm font-medium">
+                  {getHumorousMessage(karakCount)}
+                </Badge>
+                <div className="text-xs text-muted-foreground mt-2 font-medium">
+                  Based on <DirhamSymbol size={14} className="inline align-baseline mr-0.5" />
+                  {KARAK_PRICE} per cup
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {karakCount !== null && karakCount > 0 && (
+        <div className="w-full max-w-4xl mx-auto mt-8 mb-8">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-primary mb-2 tracking-tight">Your Karak Collection</h2>
+            <p className="text-muted-foreground font-medium">Scroll down to see all {karakCount.toLocaleString()} cups!</p>
+          </div>
+          <div className="text-center leading-relaxed text-2xl">
+            {Array.from({ length: karakCount }, (_, i) => (
+              <span key={i} className="inline-block m-1">
+                ☕
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
-  );
+  )
 }

@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# How Many Karaks Is That? ☕
+
+A fun web application that converts any AED (UAE Dirham) amount into the number of karak chai cups you could buy - because that's the only metric that truly matters in the UAE!
+
+## Features
+
+- 💰 **Currency Conversion**: Enter any AED amount and see how many karak cups it equals
+- ☕ **Visual Display**: See your karak collection with cup emojis
+- 🎨 **Modern UI**: Built with shadcn/ui components and Tailwind CSS
+- 📱 **Responsive Design**: Works perfectly on desktop and mobile
+- 🇦🇪 **UAE Culture**: Features the new official UAE Dirham symbol
+- 🎭 **Humorous Messages**: Get funny messages based on your karak count
+- 📊 **Fun Facts**: Learn interesting facts about karak consumption in the UAE
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **Components**: shadcn/ui with Radix UI primitives
+- **Font**: Bricolage Grotesque (Google Fonts)
+- **Icons**: Lucide React
+- **Currency Symbol**: Official new UAE Dirham symbol (SVG)
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Open your browser** and navigate to [http://localhost:3000](http://localhost:3000)
+
+## Available Scripts
+
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build the application for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint for code quality checks
+
+## Project Structure
+
+```
+├── app/
+│   ├── layout.tsx          # Root layout with metadata
+│   ├── page.tsx            # Main calculator page
+│   └── globals.css         # Global styles and CSS variables
+├── components/
+│   └── ui/
+│       ├── dirham-symbol.tsx  # UAE Dirham symbol component
+│       ├── button.tsx         # Button component
+│       ├── card.tsx           # Card components
+│       ├── dialog.tsx         # Dialog components
+│       ├── input.tsx          # Input component
+│       └── badge.tsx          # Badge component
+├── lib/
+│   └── utils.ts            # Utility functions
+└── public/                 # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features Explained
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Karak Price Calculation
+- Based on average karak price of 1.5 AED per cup
+- Calculates how many full cups you can afford
+- Displays humorous messages based on quantity
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### UAE Dirham Symbol
+- Uses the official new UAE Dirham symbol
+- Implemented as an SVG component for crisp rendering
+- Properly positioned and sized for different contexts
 
-## Learn More
+### Typography
+- Bricolage Grotesque font with multiple weights
+- Strategic use of font weights for visual hierarchy
+- Proper text alignment and spacing
 
-To learn more about Next.js, take a look at the following resources:
+## Cultural Context
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Karak chai is more than just tea in the UAE - it's a cultural phenomenon that brings people together. This app playfully acknowledges how central karak is to daily life by using it as a unit of measurement for any price.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+Feel free to contribute to this project by:
+- Reporting bugs
+- Suggesting new features
+- Improving the UI/UX
+- Adding more cultural elements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is open source and available under the MIT License.
