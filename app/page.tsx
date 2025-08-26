@@ -47,17 +47,17 @@ export default function KarakCalculator() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-card to-muted p-4">
+    <div className="min-h-screen p-4">
       <div className="w-full max-w-md mx-auto space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="text-6xl mb-4">☕</div>
-          <h1 className="text-3xl font-extrabold text-foreground tracking-tight">How Many Karaks Is That?</h1>
+          <div className="text-6xl mb-4 floating-emoji">☕</div>
+          <h1 className="text-3xl font-extrabold text-foreground tracking-tight bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">How Many Karaks Is That?</h1>
           <p className="text-muted-foreground font-medium">Convert any price into the only metric that truly matters</p>
 
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground font-medium">
+              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground font-medium colorful-hover">
                 <Info className="h-4 w-4 mr-1" />
                 Fun Facts
               </Button>
@@ -82,9 +82,9 @@ export default function KarakCalculator() {
         </div>
 
         {/* Calculator Card */}
-        <Card className="border-2 border-primary/20 shadow-lg">
+        <Card className="border-2 rainbow-border shadow-lg colorful-hover bg-gradient-to-br from-card via-card to-card/95 backdrop-blur-sm">
           <CardHeader className="text-center">
-            <CardTitle className="text-primary font-semibold">The Karak Calculator</CardTitle>
+            <CardTitle className="text-primary font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">The Karak Calculator</CardTitle>
             <CardDescription className="font-medium">Enter an amount in AED and discover its true value</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -110,20 +110,20 @@ export default function KarakCalculator() {
             </div>
 
             <div className="flex gap-2">
-              <Button onClick={calculateKarak} disabled={!aedAmount || isCalculating} className="flex-1 font-semibold">
+              <Button onClick={calculateKarak} disabled={!aedAmount || isCalculating} className="flex-1 font-semibold colorful-hover bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary transition-all duration-300">
                 {isCalculating ? "Brewing..." : "Calculate Karaks"}
               </Button>
-              <Button onClick={reset} variant="outline" disabled={!aedAmount && karakCount === null} className="font-semibold">
+              <Button onClick={reset} variant="outline" disabled={!aedAmount && karakCount === null} className="font-semibold colorful-hover border-2">
                 Reset
               </Button>
             </div>
 
             {/* Results */}
             {karakCount !== null && (
-              <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20 text-center space-y-3">
-                <div className="text-4xl font-black text-primary tracking-tight">{karakCount.toLocaleString()}</div>
+              <div className="mt-6 p-4 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 rounded-lg border-2 rainbow-border text-center space-y-3 bounce-in pulse-glow">
+                <div className="text-4xl font-black bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent tracking-tight">{karakCount.toLocaleString()}</div>
                 <div className="text-lg font-medium text-foreground">cups of delicious karak chai</div>
-                <Badge variant="secondary" className="text-sm font-medium">
+                <Badge variant="secondary" className="text-sm font-medium bg-gradient-to-r from-secondary/20 to-accent/20 border border-accent/30">
                   {getHumorousMessage(karakCount)}
                 </Badge>
                 <div className="text-xs text-muted-foreground mt-2 font-medium">
@@ -138,13 +138,20 @@ export default function KarakCalculator() {
 
       {karakCount !== null && karakCount > 0 && (
         <div className="w-full max-w-4xl mx-auto mt-8 mb-8">
-          <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-primary mb-2 tracking-tight">Your Karak Collection</h2>
+          <div className="text-center mb-6 bounce-in">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mb-2 tracking-tight">Your Karak Collection</h2>
             <p className="text-muted-foreground font-medium">Scroll down to see all {karakCount.toLocaleString()} cups!</p>
           </div>
-          <div className="text-center leading-relaxed text-2xl">
+          <div className="text-center leading-relaxed text-2xl bg-gradient-to-br from-card/50 via-accent/5 to-primary/5 rounded-2xl p-6 border border-accent/20">
             {Array.from({ length: karakCount }, (_, i) => (
-              <span key={i} className="inline-block m-1">
+              <span 
+                key={i} 
+                className="inline-block m-1 floating-emoji" 
+                style={{ 
+                  animationDelay: `${(i * 0.1) % 3}s`,
+                  filter: `hue-rotate(${(i * 20) % 360}deg)` 
+                }}
+              >
                 ☕
               </span>
             ))}

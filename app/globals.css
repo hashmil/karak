@@ -5,76 +5,92 @@
 
 
 :root {
-  /* Updated color tokens to match karak chai theme with warm emerald greens */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.35 0 0);
-  --card: oklch(0.97 0 0);
-  --card-foreground: oklch(0.25 0.15 160);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.35 0 0);
-  --primary: oklch(0.45 0.15 160);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.55 0.12 160);
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.35 0 0);
-  --accent: oklch(0.55 0.12 160);
-  --accent-foreground: oklch(1 0 0);
+  /* Vibrant chai-inspired color palette */
+  --background: oklch(0.98 0.02 45);
+  --foreground: oklch(0.25 0.08 25);
+  --card: oklch(0.96 0.03 50);
+  --card-foreground: oklch(0.3 0.12 35);
+  --popover: oklch(0.98 0.02 45);
+  --popover-foreground: oklch(0.25 0.08 25);
+  --primary: oklch(0.55 0.2 25);
+  --primary-foreground: oklch(0.98 0.02 50);
+  --secondary: oklch(0.75 0.15 40);
+  --secondary-foreground: oklch(0.2 0.08 30);
+  --muted: oklch(0.94 0.04 55);
+  --muted-foreground: oklch(0.45 0.06 35);
+  --accent: oklch(0.7 0.18 60);
+  --accent-foreground: oklch(0.15 0.06 25);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.97 0 0);
-  --ring: oklch(0.45 0.15 160 / 0.5);
-  --chart-1: oklch(0.45 0.15 160);
-  --chart-2: oklch(0.55 0.12 160);
-  --chart-3: oklch(0.6 0.15 260);
-  --chart-4: oklch(0.577 0.245 27.325);
-  --chart-5: oklch(0.75 0.15 85);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.97 0 0);
-  --sidebar-foreground: oklch(0.35 0 0);
-  --sidebar-primary: oklch(0.45 0.15 160);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.55 0.12 160);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.45 0.15 160 / 0.5);
+  --border: oklch(0.88 0.05 50);
+  --input: oklch(0.96 0.03 50);
+  --ring: oklch(0.55 0.2 25 / 0.4);
+  --chart-1: oklch(0.6 0.2 30);
+  --chart-2: oklch(0.65 0.18 45);
+  --chart-3: oklch(0.7 0.15 60);
+  --chart-4: oklch(0.75 0.12 75);
+  --chart-5: oklch(0.8 0.1 90);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.96 0.03 50);
+  --sidebar-foreground: oklch(0.25 0.08 25);
+  --sidebar-primary: oklch(0.55 0.2 25);
+  --sidebar-primary-foreground: oklch(0.98 0.02 50);
+  --sidebar-accent: oklch(0.7 0.18 60);
+  --sidebar-accent-foreground: oklch(0.15 0.06 25);
+  --sidebar-border: oklch(0.88 0.05 50);
+  --sidebar-ring: oklch(0.55 0.2 25 / 0.4);
+  
+  /* Fun additional colors for extra vibrancy */
+  --fun-orange: oklch(0.7 0.2 50);
+  --fun-yellow: oklch(0.8 0.15 80);
+  --fun-pink: oklch(0.75 0.18 340);
+  --fun-purple: oklch(0.65 0.2 300);
+  --fun-blue: oklch(0.6 0.18 250);
+  --fun-green: oklch(0.65 0.2 150);
 }
 
 .dark {
-  /* Updated dark mode colors to maintain karak theme */
-  --background: oklch(0.1 0 0);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.15 0 0);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.15 0 0);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.55 0.12 160);
-  --primary-foreground: oklch(0.1 0 0);
-  --secondary: oklch(0.25 0 0);
-  --secondary-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.55 0.12 160);
-  --accent-foreground: oklch(0.1 0 0);
+  /* Vibrant dark mode with warm chai colors */
+  --background: oklch(0.12 0.04 25);
+  --foreground: oklch(0.92 0.03 50);
+  --card: oklch(0.18 0.05 30);
+  --card-foreground: oklch(0.9 0.04 45);
+  --popover: oklch(0.18 0.05 30);
+  --popover-foreground: oklch(0.92 0.03 50);
+  --primary: oklch(0.65 0.18 40);
+  --primary-foreground: oklch(0.1 0.04 25);
+  --secondary: oklch(0.3 0.08 35);
+  --secondary-foreground: oklch(0.9 0.04 45);
+  --muted: oklch(0.25 0.06 30);
+  --muted-foreground: oklch(0.7 0.04 40);
+  --accent: oklch(0.75 0.16 55);
+  --accent-foreground: oklch(0.12 0.04 25);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.25 0 0);
-  --ring: oklch(0.55 0.12 160 / 0.5);
-  --chart-1: oklch(0.55 0.12 160);
-  --chart-2: oklch(0.65 0.15 160);
-  --chart-3: oklch(0.7 0.15 260);
-  --chart-4: oklch(0.6 0.2 27);
-  --chart-5: oklch(0.8 0.15 85);
-  --sidebar: oklch(0.15 0 0);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.55 0.12 160);
-  --sidebar-primary-foreground: oklch(0.1 0 0);
-  --sidebar-accent: oklch(0.25 0 0);
-  --sidebar-accent-foreground: oklch(0.95 0 0);
-  --sidebar-border: oklch(0.25 0 0);
-  --sidebar-ring: oklch(0.55 0.12 160 / 0.5);
+  --border: oklch(0.3 0.06 35);
+  --input: oklch(0.22 0.05 30);
+  --ring: oklch(0.65 0.18 40 / 0.4);
+  --chart-1: oklch(0.6 0.18 35);
+  --chart-2: oklch(0.65 0.16 50);
+  --chart-3: oklch(0.7 0.14 65);
+  --chart-4: oklch(0.75 0.12 80);
+  --chart-5: oklch(0.8 0.1 95);
+  --sidebar: oklch(0.18 0.05 30);
+  --sidebar-foreground: oklch(0.92 0.03 50);
+  --sidebar-primary: oklch(0.65 0.18 40);
+  --sidebar-primary-foreground: oklch(0.1 0.04 25);
+  --sidebar-accent: oklch(0.3 0.08 35);
+  --sidebar-accent-foreground: oklch(0.9 0.04 45);
+  --sidebar-border: oklch(0.3 0.06 35);
+  --sidebar-ring: oklch(0.65 0.18 40 / 0.4);
+  
+  /* Fun additional colors for dark mode */
+  --fun-orange: oklch(0.65 0.18 45);
+  --fun-yellow: oklch(0.75 0.14 75);
+  --fun-pink: oklch(0.7 0.16 330);
+  --fun-purple: oklch(0.6 0.18 290);
+  --fun-blue: oklch(0.55 0.16 240);
+  --fun-green: oklch(0.6 0.18 140);
 }
 
 @theme inline {
@@ -124,5 +140,134 @@
   }
   body {
     @apply bg-background text-foreground;
+    background: linear-gradient(135deg, 
+      var(--background) 0%, 
+      color-mix(in oklch, var(--background), var(--fun-yellow) 8%) 25%,
+      color-mix(in oklch, var(--background), var(--fun-orange) 6%) 50%,
+      color-mix(in oklch, var(--background), var(--fun-pink) 4%) 75%,
+      var(--background) 100%
+    );
+    animation: subtle-gradient-shift 20s ease-in-out infinite alternate;
   }
+}
+
+/* Fun animations */
+@keyframes subtle-gradient-shift {
+  0% {
+    background: linear-gradient(135deg, 
+      var(--background) 0%, 
+      color-mix(in oklch, var(--background), var(--fun-yellow) 8%) 25%,
+      color-mix(in oklch, var(--background), var(--fun-orange) 6%) 50%,
+      color-mix(in oklch, var(--background), var(--fun-pink) 4%) 75%,
+      var(--background) 100%
+    );
+  }
+  50% {
+    background: linear-gradient(225deg, 
+      var(--background) 0%, 
+      color-mix(in oklch, var(--background), var(--fun-pink) 8%) 25%,
+      color-mix(in oklch, var(--background), var(--fun-blue) 6%) 50%,
+      color-mix(in oklch, var(--background), var(--fun-green) 4%) 75%,
+      var(--background) 100%
+    );
+  }
+  100% {
+    background: linear-gradient(315deg, 
+      var(--background) 0%, 
+      color-mix(in oklch, var(--background), var(--fun-green) 8%) 25%,
+      color-mix(in oklch, var(--background), var(--fun-yellow) 6%) 50%,
+      color-mix(in oklch, var(--background), var(--fun-orange) 4%) 75%,
+      var(--background) 100%
+    );
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(2deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px color-mix(in oklch, var(--primary), transparent 70%),
+                0 0 40px color-mix(in oklch, var(--primary), transparent 90%);
+  }
+  50% { 
+    box-shadow: 0 0 30px color-mix(in oklch, var(--primary), transparent 50%),
+                0 0 60px color-mix(in oklch, var(--primary), transparent 80%);
+  }
+}
+
+@keyframes rainbow-border {
+  0% { border-color: var(--fun-orange); }
+  16% { border-color: var(--fun-yellow); }
+  32% { border-color: var(--fun-green); }
+  48% { border-color: var(--fun-blue); }
+  64% { border-color: var(--fun-purple); }
+  80% { border-color: var(--fun-pink); }
+  100% { border-color: var(--fun-orange); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes bounce-in {
+  0% { 
+    transform: scale(0.3); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: scale(1.05); 
+  }
+  70% { 
+    transform: scale(0.9); 
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+/* Utility classes for fun effects */
+.floating-emoji {
+  animation: float 6s ease-in-out infinite;
+}
+
+.rainbow-border {
+  animation: rainbow-border 3s linear infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.gradient-background {
+  background: linear-gradient(45deg, 
+    var(--fun-orange), 
+    var(--fun-yellow), 
+    var(--fun-pink), 
+    var(--fun-purple), 
+    var(--fun-blue), 
+    var(--fun-green)
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.bounce-in {
+  animation: bounce-in 0.8s ease-out;
+}
+
+.colorful-hover {
+  transition: all 0.3s ease;
+}
+
+.colorful-hover:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px color-mix(in oklch, var(--primary), transparent 70%),
+              0 0 20px color-mix(in oklch, var(--fun-yellow), transparent 60%);
 }
