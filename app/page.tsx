@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,6 +8,90 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { DirhamSymbol } from "@/components/ui/dirham-symbol"
 import { Info } from "lucide-react"
+
+// Viewport-based virtual scrolling for full-page emoji display
+function ViewportVirtualizedEmojis({ count }: { count: number }) {
+  const [visibleEmojis, setVisibleEmojis] = useState<React.ReactElement[]>([])
+  const containerRef = useRef<HTMLDivElement>(null)
+  
+  const EMOJI_SIZE = 48 // Optimized emoji size
+  const EMOJI_MARGIN = 8 // Reduced margin for better density
+  const EMOJIS_PER_ROW = Math.floor((typeof window !== 'undefined' ? window.innerWidth : 1200) / (EMOJI_SIZE + EMOJI_MARGIN))
+  const ROW_HEIGHT = EMOJI_SIZE + EMOJI_MARGIN
+  const BUFFER_ROWS = 3 // Reduced buffer for better performance
+  
+  const totalRows = Math.ceil(count / EMOJIS_PER_ROW)
+  const totalHeight = totalRows * ROW_HEIGHT
+
+  useEffect(() => {
+    if (count === 0) {
+      setVisibleEmojis([])
+      return
+    }
+
+    const updateVisibleEmojis = () => {
+      if (!containerRef.current) return
+      
+      const containerTop = containerRef.current.offsetTop
+      const scrollTop = window.scrollY
+      const viewportHeight = window.innerHeight
+      
+      // Calculate which rows are visible
+      const viewportStart = Math.max(0, scrollTop - containerTop)
+      const viewportEnd = viewportStart + viewportHeight
+      
+      const startRow = Math.max(0, Math.floor(viewportStart / ROW_HEIGHT) - BUFFER_ROWS)
+      const endRow = Math.min(totalRows, Math.ceil(viewportEnd / ROW_HEIGHT) + BUFFER_ROWS)
+      
+      const startIndex = startRow * EMOJIS_PER_ROW
+      const endIndex = Math.min(count, endRow * EMOJIS_PER_ROW)
+      
+      const newVisibleEmojis = []
+      for (let i = startIndex; i < endIndex; i++) {
+        const row = Math.floor(i / EMOJIS_PER_ROW)
+        const col = i % EMOJIS_PER_ROW
+        
+        newVisibleEmojis.push(
+          <span
+            key={i}
+            className="absolute inline-block text-4xl floating-emoji"
+            style={{
+              top: row * ROW_HEIGHT,
+              left: col * (EMOJI_SIZE + EMOJI_MARGIN) + EMOJI_MARGIN,
+              animationDelay: `${(i * 0.05) % 2}s`,
+              filter: `hue-rotate(${(i * 15) % 360}deg)`
+            }}
+          >
+            ☕
+          </span>
+        )
+      }
+      
+      setVisibleEmojis(newVisibleEmojis)
+    }
+
+    updateVisibleEmojis()
+    window.addEventListener('scroll', updateVisibleEmojis, { passive: true })
+    window.addEventListener('resize', updateVisibleEmojis, { passive: true })
+    
+    return () => {
+      window.removeEventListener('scroll', updateVisibleEmojis)
+      window.removeEventListener('resize', updateVisibleEmojis)
+    }
+  }, [count, totalRows, EMOJIS_PER_ROW, ROW_HEIGHT])
+
+  if (count === 0) return null
+
+  return (
+    <div 
+      ref={containerRef}
+      className="relative w-full"
+      style={{ height: totalHeight }}
+    >
+      {visibleEmojis}
+    </div>
+  )
+}
 
 export default function KarakCalculator() {
   const [aedAmount, setAedAmount] = useState("")
@@ -137,24 +221,18 @@ export default function KarakCalculator() {
       </div>
 
       {karakCount !== null && karakCount > 0 && (
-        <div className="w-full max-w-4xl mx-auto mt-8 mb-8">
-          <div className="text-center mb-6 bounce-in">
+        <div className="w-full mt-12 mb-8">
+          <div className="text-center mb-8 bounce-in max-w-2xl mx-auto px-4">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mb-2 tracking-tight">Your Karak Collection</h2>
-            <p className="text-muted-foreground font-medium">Scroll down to see all {karakCount.toLocaleString()} cups!</p>
+            <p className="text-muted-foreground font-medium">Keep scrolling to see all {karakCount.toLocaleString()} cups! 🎯</p>
+            {karakCount > 10000 && (
+              <p className="text-xs text-muted-foreground mt-2 opacity-75">
+                Pro tip: This might take a while... grab a real karak while you scroll! ☕
+              </p>
+            )}
           </div>
-          <div className="text-center leading-relaxed text-2xl bg-gradient-to-br from-card/50 via-accent/5 to-primary/5 rounded-2xl p-6 border border-accent/20">
-            {Array.from({ length: karakCount }, (_, i) => (
-              <span 
-                key={i} 
-                className="inline-block m-1 floating-emoji" 
-                style={{ 
-                  animationDelay: `${(i * 0.1) % 3}s`,
-                  filter: `hue-rotate(${(i * 20) % 360}deg)` 
-                }}
-              >
-                ☕
-              </span>
-            ))}
+          <div className="w-full bg-gradient-to-b from-card/30 via-transparent to-card/30 px-4">
+            <ViewportVirtualizedEmojis count={karakCount} />
           </div>
         </div>
       )}
